@@ -31,10 +31,12 @@ class MainMenuScene extends Phaser.Scene {
     }
 
     preload() {
+        console.log('MainMenuScene preload');
         this.load.image('menu_bg', 'assets/menu_background.png');
     }
 
     create() {
+        console.log('MainMenuScene create');
         this.add.image(400, 225, 'menu_bg').setDisplaySize(800, 450);
 
         this.add.text(400, 100, 'Mein Plattformer', { fontSize: '48px', fill: '#fff' }).setOrigin(0.5);
@@ -66,6 +68,7 @@ class ControlsScene extends Phaser.Scene {
     }
 
     create() {
+        console.log('ControlsScene create');
         this.cameras.main.setBackgroundColor('#000022');
 
         this.add.text(400, 100, 'Steuerung', { fontSize: '48px', fill: '#fff' }).setOrigin(0.5);
@@ -92,19 +95,20 @@ class GameScene extends Phaser.Scene {
     }
 
     preload() {
+        console.log('GameScene preload');
         this.load.image('background', 'assets/background.png');
         this.load.image('ground', 'assets/ground.png');
         this.load.image('obstacle', 'assets/obstacle.png');
         this.load.image('coin', 'assets/coin.png');
         this.load.spritesheet('player', 'assets/player_sheet.png', { frameWidth: 32, frameHeight: 48 });
 
-        // Sounds laden
         this.load.audio('jump', 'assets/jump.wav');
         this.load.audio('coin', 'assets/coin.wav');
         this.load.audio('gameover', 'assets/gameover.wav');
     }
 
     create() {
+        console.log('GameScene create');
         this.gameOver = false;
         this.score = 0;
 
@@ -160,7 +164,6 @@ class GameScene extends Phaser.Scene {
             strokeThickness: 4
         }).setScrollFactor(0);
 
-        // Sounds initialisieren
         this.jumpSound = this.sound.add('jump');
         this.coinSound = this.sound.add('coin');
         this.gameOverSound = this.sound.add('gameover');
@@ -227,7 +230,10 @@ const config = {
     scene: [MainMenuScene, ControlsScene, GameScene]
 };
 
-const game = new Phaser.Game(config);
+window.onload = () => {
+    console.log('Starte Phaser Game');
+    const game = new Phaser.Game(config);
+};
 </script>
 </body>
 </html>
